@@ -1,13 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid">
-  <h1 class="app-root">Icons</h1>
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-form-field class="filterresults">
+        <input matInput placeholder="Filter" (input)="applyFilter($event.target.value)">
+      </mat-form-field>
+
+    </div>
+  </div>
   <div class="col-sm-2" *ngFor="let icon of icons" style="text-align: center;">
     <div class="media" style="padding: 20px;">
       <i class="material-icons" style="font-size: 100px;">{{icon}}</i>
       <div class="media-body">
         <h5 class="mt-0" >{{icon}}</h5>
-        <button class="btn btn-info" [clipboard]="icon" (clipboardCopy)="logSuccess( $event )" (clipboardError)="logError( $event )">
-          Copy Icon name
+        <button class="btn btn-danger" [clipboard]="icon" (clipboardCopy)="logSuccess( $event )" (clipboardError)="logError( $event )" style="margin-bottom: 5px;">
+          Copy for Angular
+        </button> <br>
+        <button class="btn btn-info" [clipboard]="getPrimefacesIcon(icon)" (clipboardCopy)="logSuccess( $event )" (clipboardError)="logError( $event )">
+          Copy for Primefaces
         </button>
       </div>
     </div>
