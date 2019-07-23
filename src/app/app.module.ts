@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ClipboardService } from './services/clipboard.service';
 import { ClipboardDirective } from './directives/clipboard.directive';
 import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MaterialModule } from './material/material.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [ClipboardService],
   bootstrap: [AppComponent]
