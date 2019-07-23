@@ -7,8 +7,8 @@ describe('material-icons-viewer App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('headline should be Icons', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('Icons');
   });
 });
