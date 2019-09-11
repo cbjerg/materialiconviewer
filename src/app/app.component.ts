@@ -13,8 +13,8 @@ export class AppComponent implements OnInit {
   icons: string[] = [];
   originalicons: string[] = [];
   loading: boolean = true;
-  latitude;
-  longtitude;
+  // latitude;
+  // longtitude;
 
   constructor(
     private _snackBar: MatSnackBar
@@ -31,21 +31,21 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getIconString();
-    if (!navigator.geolocation) {
+    // if (!navigator.geolocation) {
 
-      console.log('no geolocation');
+    //   console.log('no geolocation');
 
-    } else {
-      navigator.geolocation.getCurrentPosition((position) => {
-        // Get the coordinates of the current possition.
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        this.latitude = lat;
-        this.longtitude = lng;
-        console.log('latititude', this.latitude);
-        console.log('longitude', this.longtitude);
-      });
-    }
+    // } else {
+    //   navigator.geolocation.getCurrentPosition((position) => {
+    //     // Get the coordinates of the current possition.
+    //     const lat = position.coords.latitude;
+    //     const lng = position.coords.longitude;
+    //     this.latitude = lat;
+    //     this.longtitude = lng;
+    //     console.log('latititude', this.latitude);
+    //     console.log('longitude', this.longtitude);
+    //   });
+    // }
   }
 
   applyFilter(filterValue: string) {
