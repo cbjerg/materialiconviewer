@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material/icon';
+// import { DomSanitizer } from '@angular/platform-browser';
+// import { MatIconRegistry } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +13,39 @@ export class AppComponent implements OnInit {
   icons: string[] = [];
   originalicons: string[] = [];
   loading: boolean = true;
+  latitude;
+  longtitude;
 
   constructor(
-    iconRegistry: MatIconRegistry,
-    sanitizer: DomSanitizer
+    private _snackBar: MatSnackBar
+    // iconRegistry: MatIconRegistry,
+    // sanitizer: DomSanitizer
   ) {
-    iconRegistry.addSvgIcon(
-      'angular',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/angular.svg'));
-    iconRegistry.addSvgIcon(
-      'primefaces',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/primefaces.svg'));
+    // iconRegistry.addSvgIcon(
+    //   'angular',
+    //   sanitizer.bypassSecurityTrustResourceUrl('assets/angular.svg'));
+    // iconRegistry.addSvgIcon(
+    //   'primefaces',
+    //   sanitizer.bypassSecurityTrustResourceUrl('assets/primefaces.svg'));
   }
 
   ngOnInit() {
     this.getIconString();
+    if (!navigator.geolocation) {
+
+      console.log('no geolocation');
+
+    } else {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // Get the coordinates of the current possition.
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        this.latitude = lat;
+        this.longtitude = lng;
+        console.log('latititude', this.latitude);
+        console.log('longitude', this.longtitude);
+      });
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -60,5 +79,8 @@ export class AppComponent implements OnInit {
     console.group('Clipboard Success');
     console.log(value);
     console.groupEnd();
+    this._snackBar.open(`${value} was copied`, 'OK', {
+      duration: 2000,
+    });
   }
 }
